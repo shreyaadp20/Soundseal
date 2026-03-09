@@ -1,0 +1,126 @@
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# logs and databases
+*.log
+db.sqlite3
+db.sqlite3-journal
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Sphinx
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter / IPython
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+# pyenv
+# .python-version  # typically not ignored for apps; uncomment if needed
+
+# pipenv
+# Pipfile.lock is usually committed; leave commented unless you have a reason to ignore it
+# Pipfile.lock
+
+# UV
+# uv.lock is usually committed
+# uv.lock
+
+# PEP 582 (e.g., PDM, PyFlow)
+__pypackages__/
+
+
+# SageMath
+*.sage.py
+
+# Virtual Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE / Editor
+
+# mkdocs
+/site
+
+# Type checkers & linters
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+pyrightconfig.json
+
+# Cython
+cython_debug/
+
+# PyPI
+.pypirc
+
+# Abstra (AI automation framework)
+.abstra/
+
+# Cursor (AI editor)
+.cursorignore
+.cursorindexingignore
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
