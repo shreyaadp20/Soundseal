@@ -30,26 +30,30 @@ if "page" not in st.session_state:
 # ── GLOBAL STYLES ──────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --bg:        #040404;
-    --surface:   #0c0c0c;
-    --panel:     #101010;
-    --border:    #1e1e1e;
-    --border2:   #2d2d2d;
-    --accent:    #c9b8ff;
-    --accent-dim: rgba(201,184,255,0.12);
-    --accent-glow: rgba(201,184,255,0.4);
-    --red:       #ff3333;
-    --text:      #ffb3d9;
-    --muted:     #c084a0;
-    --font-display: 'Bebas Neue', sans-serif;
-    --font-body:    'Barlow', sans-serif;
-    --font-cond:    'Barlow Condensed', sans-serif;
-    --font-mono:    'Share Tech Mono', monospace;
+    --bg:          #faf8f5;
+    --surface:     #f4f0eb;
+    --panel:       #ffffff;
+    --border:      #e8ddd4;
+    --border2:     #d4c5b8;
+    --accent:      #FF69B4;
+    --accent2:     #069494;
+    --teal:        #069494;
+    --pink-light:  rgba(255,105,180,0.10);
+    --accent-dim:  rgba(255,105,180,0.12);
+    --accent-glow: rgba(255,105,180,0.40);
+    --cyan-glow:   rgba(6,148,148,0.30);
+    --red:         #e03060;
+    --text:        #0f0608;
+    --muted:       #2d1a22;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body:    'Cormorant Garamond', serif;
+    --font-cond:    'Cormorant Garamond', serif;
+    --font-mono:    'Cormorant Garamond', serif;
 }
 
 #MainMenu, footer, header { visibility: hidden; }
@@ -59,7 +63,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: #3a2540; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #d4a0bc; border-radius: 2px; }
 
 body, .stApp {
     background-color: var(--bg) !important;
@@ -83,11 +87,13 @@ body, .stApp {
     width: max-content;
 }
 .marquee-item {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    color: #000;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #fff;
     padding: 0 2rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    font-weight: 400;
 }
 @keyframes ticker {
     from { transform: translateX(0); }
@@ -101,32 +107,34 @@ body, .stApp {
     justify-content: space-between;
     padding: 0 56px;
     height: 64px;
+    background: rgba(250,248,245,0.97);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    background: rgba(4,4,4,0.98);
     position: relative;
     z-index: 99;
 }
 .nav-logo {
     font-family: var(--font-display);
-    font-size: 1.6rem;
-    letter-spacing: 0.05em;
-    color: var(--text);
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    color: #0f0608;
+    font-weight: 300;
 }
-.nav-logo span { color: var(--accent); }
+.nav-logo span { color: var(--accent); font-style: italic; }
 .nav-placeholder {
     display: flex;
     gap: 4px;
     align-items: center;
 }
 .nav-pill {
-    font-family: var(--font-mono);
+    font-family: 'Cormorant Garamond', serif;
     font-size: 0.7rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding: 7px 18px;
     border-radius: 2px;
     border: 1px solid transparent;
-    color: var(--muted);
+    color: #1a0a14;
     background: transparent;
 }
 .nav-pill.active-pill {
@@ -151,12 +159,12 @@ body, .stApp {
 /* Make nav buttons look like nav pills */
 .nav-buttons-row .stButton > button {
     background: transparent !important;
-    color: var(--muted) !important;
+    color: #1a0a14 !important;
     border: 1px solid transparent !important;
-    font-family: var(--font-mono) !important;
-    font-size: 0.7rem !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1rem !important;
     font-weight: 400 !important;
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
     padding: 7px 18px !important;
     border-radius: 2px !important;
@@ -169,7 +177,7 @@ body, .stApp {
 }
 .nav-buttons-row .stButton > button:hover {
     color: var(--text) !important;
-    border-color: var(--border2) !important;
+    border-color: #d4c5b8 !important;
     box-shadow: none !important;
     transform: none !important;
     background: transparent !important;
@@ -177,15 +185,17 @@ body, .stApp {
 
 /* Active nav button override */
 .nav-active .stButton > button {
-    background: var(--accent) !important;
-    color: #000 !important;
-    border-color: var(--accent) !important;
+    background: linear-gradient(135deg, #FF69B4 0%, #069494 100%) !important;
+    color: #fff !important;
+    border-color: transparent !important;
     font-weight: 600 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 2px 14px rgba(255,105,180,0.3) !important;
 }
 .nav-active .stButton > button:hover {
-    background: var(--accent) !important;
-    color: #000 !important;
-    box-shadow: 0 0 20px rgba(201,184,255,0.3) !important;
+    background: linear-gradient(135deg, #FF69B4 0%, #069494 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px rgba(255,105,180,0.45) !important;
     transform: none !important;
 }
 
@@ -199,56 +209,55 @@ body, .stApp {
 
 /* Large CTA Ingest button */
 .cta-ingest-wrap .stButton > button {
-    background: var(--accent) !important;
-    color: #000 !important;
+    background: linear-gradient(135deg, #FF69B4 0%, #069494 100%) !important;
+    color: #fff !important;
     border: none !important;
-    font-family: var(--font-cond) !important;
-    font-size: 1.15rem !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.18em !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.15em !important;
     text-transform: uppercase !important;
     padding: 20px 52px !important;
-    border-radius: 2px !important;
+    border-radius: 40px !important;
     cursor: pointer !important;
-    transition: all 0.25s ease !important;
-    box-shadow: 0 0 0px rgba(201,184,255,0) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 24px rgba(255,105,180,0.3) !important;
     position: relative !important;
     width: 280px !important;
     height: 64px !important;
 }
 .cta-ingest-wrap .stButton > button:hover {
-    box-shadow: 0 0 40px rgba(201,184,255,0.45), 0 0 80px rgba(201,184,255,0.15) !important;
-    transform: translateY(-3px) !important;
-    filter: brightness(1.08) !important;
+    box-shadow: 0 8px 40px rgba(255,105,180,0.5), 0 0 60px rgba(0,240,255,0.2) !important;
+    transform: translateY(-4px) !important;
+    filter: brightness(1.1) !important;
 }
 .cta-ingest-wrap .stButton > button:active {
     transform: translateY(0px) !important;
-    box-shadow: 0 0 20px rgba(201,184,255,0.3) !important;
 }
 
 /* Large CTA Verify button */
 .cta-verify-wrap .stButton > button {
     background: transparent !important;
-    color: var(--accent) !important;
-    border: 1px solid rgba(201,184,255,0.5) !important;
-    font-family: var(--font-cond) !important;
-    font-size: 1.15rem !important;
+    color: var(--accent2) !important;
+    border: 1.5px solid rgba(0,240,255,0.6) !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.1rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
     padding: 20px 52px !important;
-    border-radius: 2px !important;
+    border-radius: 40px !important;
     cursor: pointer !important;
-    transition: all 0.25s ease !important;
+    transition: all 0.3s ease !important;
     width: 280px !important;
     height: 64px !important;
-    box-shadow: inset 0 0 0px rgba(201,184,255,0) !important;
+    box-shadow: 0 0 0px rgba(0,240,255,0) !important;
 }
 .cta-verify-wrap .stButton > button:hover {
-    background: rgba(201,184,255,0.07) !important;
-    border-color: var(--accent) !important;
-    box-shadow: 0 0 30px rgba(201,184,255,0.2), inset 0 0 20px rgba(201,184,255,0.05) !important;
-    transform: translateY(-3px) !important;
+    background: rgba(0,240,255,0.06) !important;
+    border-color: var(--accent2) !important;
+    box-shadow: 0 4px 30px rgba(0,240,255,0.3), inset 0 0 20px rgba(0,240,255,0.04) !important;
+    transform: translateY(-4px) !important;
 }
 .cta-verify-wrap .stButton > button:active {
     transform: translateY(0px) !important;
@@ -261,24 +270,24 @@ body, .stApp {
     padding: 0 0 24px;
 }
 .action-btn-wrap .stButton > button {
-    background: var(--accent) !important;
-    color: #000 !important;
+    background: linear-gradient(135deg, #FF69B4 0%, #069494 100%) !important;
+    color: #fff !important;
     border: none !important;
-    font-family: var(--font-cond) !important;
+    font-family: 'Cormorant Garamond', serif !important;
     font-size: 1rem !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.16em !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em !important;
     text-transform: uppercase !important;
     padding: 16px 44px !important;
-    border-radius: 2px !important;
+    border-radius: 40px !important;
     height: 54px !important;
-    transition: all 0.2s ease !important;
-    box-shadow: 0 0 0px rgba(201,184,255,0) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 20px rgba(255,105,180,0.3) !important;
 }
 .action-btn-wrap .stButton > button:hover {
-    box-shadow: 0 0 35px rgba(201,184,255,0.4) !important;
-    transform: translateY(-2px) !important;
-    filter: brightness(1.05) !important;
+    box-shadow: 0 8px 35px rgba(255,105,180,0.45), 0 0 40px rgba(0,240,255,0.15) !important;
+    transform: translateY(-3px) !important;
+    filter: brightness(1.08) !important;
 }
 .action-btn-wrap .stButton > button:active {
     transform: translateY(0) !important;
@@ -301,10 +310,10 @@ body, .stApp {
     margin: 0 auto;
 }
 .hero-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.25em;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--accent2);
     text-transform: uppercase;
     margin-bottom: 20px;
     display: flex;
@@ -314,34 +323,36 @@ body, .stApp {
 }
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(5rem, 10vw, 9.5rem);
-    line-height: 0.9;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+    font-size: clamp(4.5rem, 9vw, 10rem);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    text-transform: none;
     color: var(--text);
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    font-weight: 300;
 }
 .hero-title em {
-    font-style: normal;
+    font-style: italic;
     color: var(--accent);
+    font-weight: 300;
 }
 .hero-desc {
     font-family: var(--font-body);
-    font-size: 1.05rem;
-    color: var(--muted);
+    font-size: 1.3rem;
+    color: #1a0a14;
     line-height: 1.7;
     max-width: 540px;
     margin: 0 auto 36px;
     font-weight: 300;
 }
-.hero-desc strong { color: var(--text); font-weight: 600; }
+.hero-desc strong { color: var(--text); font-weight: 600; font-family: 'Cormorant Garamond', serif; }
 
 /* CTA label above buttons */
 .cta-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: #333;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: #8a5070;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 6px;
@@ -361,37 +372,38 @@ body, .stApp {
     transition: background 0.3s;
 }
 .feature-cell:last-child { border-right: none; }
-.feature-cell:hover { background: var(--surface); }
+.feature-cell:hover { background: linear-gradient(135deg, rgba(255,105,180,0.05) 0%, rgba(6,148,148,0.04) 100%); }
 .feature-cell::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--accent);
+    background: linear-gradient(90deg, #FF69B4, #069494, #00F0FF);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s;
 }
 .feature-cell:hover::before { transform: scaleX(1); }
 .feature-icon {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
     color: var(--accent);
     letter-spacing: 0.2em;
     margin-bottom: 14px;
 }
 .feature-name {
-    font-family: var(--font-cond);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
     color: var(--text);
     margin-bottom: 8px;
 }
 .feature-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
+    font-size: 1.15rem;
+    color: #1a0a14;
     line-height: 1.6;
 }
 
@@ -412,10 +424,11 @@ body, .stApp {
     pointer-events: none;
 }
 .page-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.25em;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--accent2);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     margin-bottom: 12px;
     display: flex;
@@ -426,20 +439,23 @@ body, .stApp {
     content: '';
     width: 20px;
     height: 1px;
-    background: var(--accent);
+    background: var(--accent2);
 }
 .page-title {
     font-family: var(--font-display);
-    font-size: clamp(3.5rem, 7vw, 6rem);
-    line-height: 0.9;
-    text-transform: uppercase;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    line-height: 0.88;
+    text-transform: none;
     color: var(--text);
     margin-bottom: 16px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
 }
-.page-title span { color: var(--accent); }
+.page-title span { color: var(--accent2); font-style: italic; }
 .page-sub {
-    font-size: 0.95rem;
-    color: var(--muted);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: #1a0a14;
     max-width: 520px;
     line-height: 1.7;
     font-weight: 300;
@@ -451,7 +467,7 @@ body, .stApp {
     right: 64px;
     font-family: var(--font-display);
     font-size: 8rem;
-    color: rgba(255,179,217,0.04);
+    color: rgba(255,105,180,0.08);
     line-height: 1;
     pointer-events: none;
 }
@@ -473,19 +489,20 @@ body, .stApp {
 .step-n {
     font-family: var(--font-display);
     font-size: 3.5rem;
-    color: #2d1f35;
+    color: #f0d0e0;
     line-height: 1;
     margin-bottom: 10px;
 }
 .step-l {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--teal);
     margin-bottom: 7px;
 }
-.step-d { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.step-d { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #1a0a14; line-height: 1.6; }
 
 /* ── UPLOAD ZONE ── */
 .upload-section { padding: 48px 64px 32px; }
@@ -500,8 +517,8 @@ body, .stApp {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 .upload-zone-wrapper:hover .upload-zone-deco {
-    border-color: rgba(201,184,255,0.3);
-    box-shadow: 0 0 40px rgba(201,184,255,0.05), inset 0 0 40px rgba(201,184,255,0.02);
+    border-color: rgba(255,105,180,0.4);
+    box-shadow: 0 0 40px rgba(255,105,180,0.07), inset 0 0 40px rgba(0,240,255,0.03);
 }
 .upload-corner {
     position: absolute;
@@ -510,31 +527,32 @@ body, .stApp {
     z-index: 2;
     pointer-events: none;
 }
-.upload-corner.tl { top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
-.upload-corner.tr { top: -1px; right: -1px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); }
-.upload-corner.bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent); }
-.upload-corner.br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+.upload-corner.tl { top: -1px; left: -1px; border-top: 2px solid #FF69B4; border-left: 2px solid #FF69B4; }
+.upload-corner.tr { top: -1px; right: -1px; border-top: 2px solid #00F0FF; border-right: 2px solid #00F0FF; }
+.upload-corner.bl { bottom: -1px; left: -1px; border-bottom: 2px solid #00F0FF; border-left: 2px solid #00F0FF; }
+.upload-corner.br { bottom: -1px; right: -1px; border-bottom: 2px solid #FF69B4; border-right: 2px solid #FF69B4; }
 .upload-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: #1a0a14;
     margin-bottom: 10px;
 }
 .upload-hint {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: #3a3a3a;
-    letter-spacing: 0.15em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: #8a5070;
+    letter-spacing: 0.12em;
     margin-top: 10px;
 }
 
 /* ── RESULT CARDS ── */
 .result-section { padding: 0 64px 64px; }
 .result-panel {
-    background: var(--panel);
+    background: #ffffff;
     border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(255,105,180,0.06);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -544,39 +562,41 @@ body, .stApp {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--surface);
+    background: linear-gradient(90deg, rgba(255,105,180,0.05) 0%, #faf8f5 100%);
 }
 .result-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border2); }
-.result-dot.green { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+.result-dot.green { background: linear-gradient(135deg,#FF69B4,#00F0FF); box-shadow: 0 0 10px rgba(255,105,180,0.7); }
 .result-dot.red { background: var(--red); box-shadow: 0 0 8px rgba(255,51,51,0.5); }
 .result-panel-title {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: #1a0a14;
 }
 .result-panel-body { padding: 20px; }
 .result-status {
-    font-family: var(--font-cond);
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-style: italic;
     margin-bottom: 6px;
 }
-.result-status.ok { color: var(--accent); }
+.result-status.ok { color: var(--accent); font-style: italic; }
 .result-status.fail { color: var(--red); }
-.result-msg { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.result-msg { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #1a0a14; line-height: 1.6; }
 .payload-box {
-    background: rgba(201,184,255,0.04);
-    border: 1px solid rgba(201,184,255,0.15);
+    background: rgba(6,148,148,0.04);
+    border: 1px solid rgba(6,148,148,0.2);
     border-radius: 2px;
     padding: 14px 16px;
     margin-top: 12px;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--accent);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--accent2);
+    font-family: 'Cormorant Garamond', serif;
     word-break: break-all;
     line-height: 1.5;
 }
@@ -584,33 +604,33 @@ body, .stApp {
 /* ── STREAMLIT OVERRIDES ── */
 div[data-testid="stFileUploader"] > label { display: none !important; }
 div[data-testid="stFileUploader"] > div {
-    background: var(--surface) !important;
-    border: 1px dashed #252525 !important;
+    background: #fff !important;
+    border: 1px dashed #e0ccd8 !important;
     border-radius: 3px !important;
     min-height: 160px !important;
     transition: all 0.25s !important;
 }
 div[data-testid="stFileUploader"] > div:hover {
-    border-color: rgba(201,184,255,0.35) !important;
-    background: rgba(201,184,255,0.02) !important;
+    border-color: rgba(255,105,180,0.4) !important;
+    background: rgba(255,105,180,0.02) !important;
 }
 div[data-testid="stFileUploader"] p {
-    font-family: var(--font-mono) !important;
-    font-size: 0.75rem !important;
-    color: #444 !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.1rem !important;
+    color: #1a0a14 !important;
     letter-spacing: 0.1em !important;
 }
 div[data-testid="stFileUploader"] small {
-    font-family: var(--font-mono) !important;
-    font-size: 0.6rem !important;
-    color: #333 !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1rem !important;
+    color: #4a2030 !important;
 }
 div[data-testid="stFileUploader"] button {
     background: transparent !important;
-    border: 1px solid var(--border2) !important;
-    color: var(--muted) !important;
-    font-family: var(--font-mono) !important;
-    font-size: 0.65rem !important;
+    border: 1px solid #d4a0bc !important;
+    color: #1a0a14 !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1rem !important;
     letter-spacing: 0.15em !important;
     border-radius: 2px !important;
     padding: 6px 16px !important;
@@ -623,63 +643,65 @@ div[data-testid="stFileUploader"] button:hover {
 
 /* Default stButton (for action buttons not in special wrappers) */
 .stButton > button {
-    background: var(--accent) !important;
-    color: #000 !important;
+    background: linear-gradient(135deg, #FF69B4 0%, #069494 100%) !important;
+    color: #fff !important;
     border: none !important;
-    font-family: var(--font-cond) !important;
+    font-family: 'Cormorant Garamond', serif !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.14em !important;
     text-transform: uppercase !important;
     padding: 13px 36px !important;
-    border-radius: 2px !important;
+    border-radius: 40px !important;
     cursor: pointer !important;
     transition: all 0.2s !important;
+    box-shadow: 0 4px 16px rgba(255,105,180,0.25) !important;
 }
 .stButton > button:hover {
-    box-shadow: 0 0 25px rgba(201,184,255,0.25) !important;
+    box-shadow: 0 6px 28px rgba(255,105,180,0.4) !important;
     transform: translateY(-1px) !important;
 }
 .stButton > button:active { transform: translateY(1px) !important; }
 
 .stDownloadButton > button {
     background: transparent !important;
-    color: var(--accent) !important;
-    border: 1px solid rgba(201,184,255,0.4) !important;
-    font-family: var(--font-cond) !important;
+    color: var(--accent2) !important;
+    border: 1.5px solid rgba(0,240,255,0.5) !important;
+    font-family: 'Cormorant Garamond', serif !important;
     font-size: 0.9rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.12em !important;
     padding: 11px 28px !important;
-    border-radius: 2px !important;
+    border-radius: 40px !important;
     transition: all 0.2s !important;
 }
 .stDownloadButton > button:hover {
-    background: rgba(201,184,255,0.06) !important;
-    box-shadow: 0 0 20px rgba(201,184,255,0.15) !important;
+    background: rgba(0,240,255,0.06) !important;
+    box-shadow: 0 0 20px rgba(0,240,255,0.2) !important;
 }
 
-.stSpinner > div { border-top-color: var(--accent) !important; }
+.stSpinner > div { border-top-color: #FF69B4 !important; }
 
 .stTextArea textarea {
-    background: var(--surface) !important;
+    background: #fff !important;
     border: 1px solid var(--border) !important;
-    color: #555 !important;
-    font-family: var(--font-mono) !important;
-    font-size: 0.72rem !important;
+    color: #1a0a14 !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.1rem !important;
     border-radius: 2px !important;
 }
+pre, code { background: #faf0f5 !important; color: #1a0a14 !important; font-family: 'Cormorant Garamond', serif !important; }
 
 details {
-    background: var(--surface) !important;
+    background: #faf8f5 !important;
     border: 1px solid var(--border) !important;
     border-radius: 3px !important;
 }
 details summary {
-    font-family: var(--font-mono) !important;
-    font-size: 0.65rem !important;
-    letter-spacing: 0.15em !important;
-    color: var(--muted) !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.1em !important;
+    color: #1a0a14 !important;
     padding: 10px 16px !important;
     cursor: pointer !important;
 }
@@ -693,8 +715,8 @@ details summary {
     align-items: center;
     margin-top: 40px;
 }
-.footer-logo { font-family: var(--font-display); font-size: 1.2rem; color: #5a3050; letter-spacing: 0.08em; }
-.footer-meta { font-family: var(--font-mono); font-size: 0.6rem; color: #5a3050; letter-spacing: 0.14em; text-transform: uppercase; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; color: #8a5070; letter-spacing: 0.08em; }
+.footer-meta { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #8a5070; letter-spacing: 0.12em; text-transform: uppercase; }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeIn {
@@ -818,12 +840,12 @@ div[data-testid="stHorizontalBlock"]:has(button[kind="secondary"]) {
 div[data-testid="stHorizontalBlock"] div[data-testid="column"]:has(button[kind="secondary"]) .stButton > button,
 div[data-testid="stHorizontalBlock"] div[data-testid="column"] .nav-active + div .stButton > button {
     background: transparent !important;
-    color: var(--muted) !important;
+    color: #1a0a14 !important;
     border: 1px solid transparent !important;
-    font-family: var(--font-mono) !important;
-    font-size: 0.7rem !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1rem !important;
     font-weight: 400 !important;
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
     padding: 7px 18px !important;
     border-radius: 2px !important;
@@ -855,7 +877,7 @@ div[data-testid="stHorizontalBlock"] div[data-testid="column"] .nav-active + div
 # HOME PAGE
 # ═══════════════════════════════════════════════════════════════════════════════
 if page == "home":
-    # 3D Waveform canvas
+    # Organic bubblegum wave canvas
     st.components.v1.html("""
 <!DOCTYPE html>
 <html>
@@ -871,86 +893,122 @@ canvas { display: block; }
 <script>
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
-canvas.width  = window.innerWidth  || 1400;
-canvas.height = 480;
-
+canvas.width  = window.innerWidth || 1400;
+canvas.height = 500;
 const W = canvas.width, H = canvas.height;
-const BARS = 96;
-const BAR_W = (W * 0.85) / BARS;
-const BAR_GAP = BAR_W * 0.28;
-const START_X = W * 0.075;
-
 let t = 0;
-const phases   = Array.from({length: BARS}, () => Math.random() * Math.PI * 2);
-const freqs    = Array.from({length: BARS}, (_, i) => 0.6 + (i / BARS) * 1.2);
-const amps     = Array.from({length: BARS}, (_, i) => {
-    const x = i / BARS;
-    return 0.3 + 0.7 * Math.sin(x * Math.PI) * (0.7 + Math.random() * 0.3);
-});
 
-function easeInOut(x) {
-    return x < 0.5 ? 2*x*x : 1 - Math.pow(-2*x+2,2)/2;
+const LAYERS = [
+  { freq: 0.9,  amp: 0.28, speed: 0.012, phase: 0.0,  colorA: [255,105,180], colorB: [0,240,255],  alpha: 0.55, thick: 2.5 },
+  { freq: 1.3,  amp: 0.20, speed: 0.018, phase: 1.2,  colorA: [6,148,148],   colorB: [255,105,180], alpha: 0.40, thick: 2.0 },
+  { freq: 0.7,  amp: 0.34, speed: 0.009, phase: 2.4,  colorA: [0,240,255],   colorB: [255,105,180], alpha: 0.30, thick: 1.5 },
+  { freq: 1.8,  amp: 0.14, speed: 0.024, phase: 3.6,  colorA: [255,150,200], colorB: [0,200,200],   alpha: 0.22, thick: 1.2 },
+  { freq: 0.5,  amp: 0.42, speed: 0.006, phase: 0.8,  colorA: [6,148,148],   colorB: [255,105,180], alpha: 0.15, thick: 1.0 },
+];
+
+function sineWave(x, layer, time) {
+  const xn = x / W;
+  return H/2
+    + Math.sin(xn * Math.PI * 2 * layer.freq + time * layer.speed * 20 + layer.phase) * H * layer.amp * 0.5
+    + Math.sin(xn * Math.PI * 3.7 * layer.freq + time * layer.speed * 14 + layer.phase * 1.5) * H * layer.amp * 0.25
+    + Math.sin(xn * Math.PI * 1.2 * layer.freq + time * layer.speed * 8 + layer.phase * 0.7) * H * layer.amp * 0.25;
+}
+
+function drawLayer(layer, time) {
+  const pts = [];
+  const STEP = 4;
+  for (let x = 0; x <= W; x += STEP) {
+    pts.push([x, sineWave(x, layer, time)]);
+  }
+
+  const midY = H / 2;
+  const fillGrad = ctx.createLinearGradient(0, midY - H * layer.amp, 0, H);
+  fillGrad.addColorStop(0,   `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},${layer.alpha * 0.6})`);
+  fillGrad.addColorStop(0.5, `rgba(${layer.colorB[0]},${layer.colorB[1]},${layer.colorB[2]},${layer.alpha * 0.3})`);
+  fillGrad.addColorStop(1,   `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0)`);
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length - 1; i++) {
+    const cx = (pts[i][0] + pts[Math.min(i+1, pts.length-1)][0]) / 2;
+    const cy = (pts[i][1] + pts[Math.min(i+1, pts.length-1)][1]) / 2;
+    ctx.quadraticCurveTo(pts[i][0], pts[i][1], cx, cy);
+  }
+  ctx.lineTo(W, H);
+  ctx.lineTo(0, H);
+  ctx.closePath();
+  ctx.fillStyle = fillGrad;
+  ctx.fill();
+
+  const strokeGrad = ctx.createLinearGradient(0, 0, W, 0);
+  strokeGrad.addColorStop(0,    `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0)`);
+  strokeGrad.addColorStop(0.15, `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},${layer.alpha * 1.4})`);
+  strokeGrad.addColorStop(0.5,  `rgba(${layer.colorB[0]},${layer.colorB[1]},${layer.colorB[2]},${layer.alpha * 1.8})`);
+  strokeGrad.addColorStop(0.85, `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},${layer.alpha * 1.4})`);
+  strokeGrad.addColorStop(1,    `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0)`);
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length - 1; i++) {
+    const cx = (pts[i][0] + pts[Math.min(i+1, pts.length-1)][0]) / 2;
+    const cy = (pts[i][1] + pts[Math.min(i+1, pts.length-1)][1]) / 2;
+    ctx.quadraticCurveTo(pts[i][0], pts[i][1], cx, cy);
+  }
+  ctx.strokeStyle = strokeGrad;
+  ctx.lineWidth = layer.thick;
+  ctx.shadowColor = `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0.8)`;
+  ctx.shadowBlur = 14;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+}
+
+const ORBS = Array.from({length: 18}, () => ({
+  x: Math.random() * W,
+  y: Math.random() * H,
+  r: 2 + Math.random() * 5,
+  vx: (Math.random() - 0.5) * 0.4,
+  vy: (Math.random() - 0.5) * 0.3,
+  hue: Math.random() > 0.5 ? [255,105,180] : [0,240,255],
+  alpha: 0.2 + Math.random() * 0.4,
+  pulse: Math.random() * Math.PI * 2,
+}));
+
+function drawOrbs() {
+  ORBS.forEach(o => {
+    o.x += o.vx; o.y += o.vy; o.pulse += 0.03;
+    if (o.x < -20) o.x = W + 20;
+    if (o.x > W + 20) o.x = -20;
+    if (o.y < -20) o.y = H + 20;
+    if (o.y > H + 20) o.y = -20;
+    const a = o.alpha * (0.6 + 0.4 * Math.sin(o.pulse));
+    const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r * 3);
+    g.addColorStop(0, `rgba(${o.hue[0]},${o.hue[1]},${o.hue[2]},${a})`);
+    g.addColorStop(1, `rgba(${o.hue[0]},${o.hue[1]},${o.hue[2]},0)`);
+    ctx.beginPath();
+    ctx.arc(o.x, o.y, o.r * 3, 0, Math.PI * 2);
+    ctx.fillStyle = g;
+    ctx.fill();
+  });
 }
 
 function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const cy = H * 0.5;
-    const maxH = H * 0.42;
-
-    for (let i = 0; i < BARS; i++) {
-        const wave =
-            Math.sin(t * freqs[i] + phases[i]) * 0.5 +
-            Math.sin(t * freqs[i] * 0.5 + phases[i] * 1.3) * 0.3 +
-            Math.sin(t * freqs[i] * 2 + phases[i] * 0.7) * 0.2;
-
-        const h = Math.abs(wave) * amps[i] * maxH;
-        const x = START_X + i * (BAR_W);
-        const bw = BAR_W - BAR_GAP;
-        const xNorm = Math.abs(i / BARS - 0.5) * 2;
-        const alphaScale = 0.5 + 0.5 * easeInOut(1 - xNorm * 0.5);
-        const heightNorm = h / maxH;
-        const r = Math.round(180 + heightNorm * 20);
-        const g = Math.round(160 + heightNorm * 24);
-        const b = 255;
-        const alpha = (0.25 + heightNorm * 0.55) * alphaScale;
-
-        const grad = ctx.createLinearGradient(0, cy - h, 0, cy);
-        grad.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
-        grad.addColorStop(0.6, `rgba(${r},${g},${b},${alpha * 0.6})`);
-        grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx.fillStyle = grad;
-        ctx.fillRect(x, cy - h, bw, h);
-
-        const grad2 = ctx.createLinearGradient(0, cy, 0, cy + h);
-        grad2.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.4})`);
-        grad2.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx.fillStyle = grad2;
-        ctx.fillRect(x, cy, bw, h);
-
-        if (heightNorm > 0.55) {
-            ctx.shadowColor = `rgba(201,184,255,0.6)`;
-            ctx.shadowBlur = 8;
-            ctx.fillStyle = `rgba(201,184,255,${(heightNorm - 0.55) * 0.6 * alphaScale})`;
-            ctx.fillRect(x, cy - h, bw, 2);
-            ctx.shadowBlur = 0;
-        }
-    }
-
-    ctx.strokeStyle = 'rgba(201,184,255,0.08)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(START_X, cy);
-    ctx.lineTo(START_X + BARS * BAR_W, cy);
-    ctx.stroke();
-
-    t += 0.018;
-    requestAnimationFrame(draw);
+  ctx.clearRect(0, 0, W, H);
+  const bg = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W * 0.6);
+  bg.addColorStop(0,   'rgba(255,105,180,0.04)');
+  bg.addColorStop(0.4, 'rgba(6,148,148,0.03)');
+  bg.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+  drawOrbs();
+  for (let i = LAYERS.length - 1; i >= 0; i--) drawLayer(LAYERS[i], t);
+  t += 0.3;
+  requestAnimationFrame(draw);
 }
 draw();
 </script>
 </body>
 </html>
-""", height=480, scrolling=False)
+""", height=500, scrolling=False)
 
     # Hero text — centered
     st.markdown("""
@@ -988,9 +1046,9 @@ draw();
     # Sub-labels under buttons
     col_l2, col_il, col_g2, col_vl, col_r2 = st.columns([2, 2, 0.3, 2, 2])
     with col_il:
-        st.markdown('<div style="text-align:center; font-family:\'Share Tech Mono\',monospace; font-size:0.6rem; color:#2d2d2d; letter-spacing:0.15em; margin-top:6px;">WATERMARK + FINGERPRINT</div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align:center; font-family:Cormorant Garamond,serif; font-size:0.95rem; color:#4a2030; letter-spacing:0.1em; margin-top:6px;">Watermark + Fingerprint</div>', unsafe_allow_html=True)
     with col_vl:
-        st.markdown('<div style="text-align:center; font-family:\'Share Tech Mono\',monospace; font-size:0.6rem; color:#2d2d2d; letter-spacing:0.15em; margin-top:6px;">MATCH + EXTRACT PAYLOAD</div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align:center; font-family:Cormorant Garamond,serif; font-size:0.95rem; color:#4a2030; letter-spacing:0.1em; margin-top:6px;">Match + Extract Payload</div>', unsafe_allow_html=True)
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -1160,6 +1218,7 @@ elif page == "ingest":
 # VERIFY PAGE
 # ═══════════════════════════════════════════════════════════════════════════════
 elif page == "verify":
+    # Same wave as home page
     st.components.v1.html("""
 <!DOCTYPE html>
 <html>
@@ -1171,87 +1230,72 @@ canvas { display: block; }
 </style>
 </head>
 <body>
-<canvas id="fp"></canvas>
+<canvas id="v"></canvas>
 <script>
-const canvas = document.getElementById('fp');
+const canvas = document.getElementById('v');
 const ctx = canvas.getContext('2d');
 canvas.width  = window.innerWidth || 1400;
-canvas.height = 220;
+canvas.height = 320;
 const W = canvas.width, H = canvas.height;
-
-const ridges = [];
-const RIDGE_COUNT = 28;
-for (let r = 0; r < RIDGE_COUNT; r++) {
-    const pts = [];
-    const baseY = H * 0.1 + r * (H * 0.8 / RIDGE_COUNT);
-    const pts_count = 80;
-    for (let i = 0; i < pts_count; i++) {
-        const x = (W * 0.1) + (i / pts_count) * (W * 0.8);
-        const noise = (Math.random() - 0.5) * 4 + Math.sin(i * 0.3 + r) * 6;
-        pts.push({ x, y: baseY + noise });
-    }
-    ridges.push(pts);
+let t = 0;
+const LAYERS = [
+  { freq: 0.9,  amp: 0.28, speed: 0.012, phase: 0.0,  colorA: [255,105,180], colorB: [6,148,148],  alpha: 0.45, thick: 2.5 },
+  { freq: 1.3,  amp: 0.20, speed: 0.018, phase: 1.2,  colorA: [6,148,148],   colorB: [255,105,180], alpha: 0.32, thick: 2.0 },
+  { freq: 0.7,  amp: 0.34, speed: 0.009, phase: 2.4,  colorA: [255,150,200], colorB: [6,148,148],   alpha: 0.22, thick: 1.5 },
+  { freq: 1.8,  amp: 0.14, speed: 0.024, phase: 3.6,  colorA: [255,105,180], colorB: [6,148,148],   alpha: 0.16, thick: 1.0 },
+];
+function sineWave(x, layer, time) {
+  const xn = x / W;
+  return H/2
+    + Math.sin(xn * Math.PI * 2 * layer.freq + time * layer.speed * 20 + layer.phase) * H * layer.amp * 0.5
+    + Math.sin(xn * Math.PI * 3.7 * layer.freq + time * layer.speed * 14 + layer.phase * 1.5) * H * layer.amp * 0.25
+    + Math.sin(xn * Math.PI * 1.2 * layer.freq + time * layer.speed * 8 + layer.phase * 0.7) * H * layer.amp * 0.25;
 }
-
-let scanY = H * 0.05;
-let scanDir = 1;
-
+function drawLayer(layer, time) {
+  const pts = [];
+  for (let x = 0; x <= W; x += 4) pts.push([x, sineWave(x, layer, time)]);
+  const fillGrad = ctx.createLinearGradient(0, H/2 - H * layer.amp, 0, H);
+  fillGrad.addColorStop(0,   `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},${layer.alpha * 0.5})`);
+  fillGrad.addColorStop(0.5, `rgba(${layer.colorB[0]},${layer.colorB[1]},${layer.colorB[2]},${layer.alpha * 0.25})`);
+  fillGrad.addColorStop(1,   `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0)`);
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length-1; i++) {
+    const cx = (pts[i][0] + pts[i+1][0]) / 2;
+    const cy = (pts[i][1] + pts[i+1][1]) / 2;
+    ctx.quadraticCurveTo(pts[i][0], pts[i][1], cx, cy);
+  }
+  ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+  ctx.fillStyle = fillGrad; ctx.fill();
+  const strokeGrad = ctx.createLinearGradient(0, 0, W, 0);
+  strokeGrad.addColorStop(0,    `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0)`);
+  strokeGrad.addColorStop(0.15, `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},${layer.alpha * 1.3})`);
+  strokeGrad.addColorStop(0.5,  `rgba(${layer.colorB[0]},${layer.colorB[1]},${layer.colorB[2]},${layer.alpha * 1.6})`);
+  strokeGrad.addColorStop(0.85, `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},${layer.alpha * 1.3})`);
+  strokeGrad.addColorStop(1,    `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0)`);
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length-1; i++) {
+    const cx = (pts[i][0] + pts[i+1][0]) / 2;
+    const cy = (pts[i][1] + pts[i+1][1]) / 2;
+    ctx.quadraticCurveTo(pts[i][0], pts[i][1], cx, cy);
+  }
+  ctx.strokeStyle = strokeGrad;
+  ctx.lineWidth = layer.thick;
+  ctx.shadowColor = `rgba(${layer.colorA[0]},${layer.colorA[1]},${layer.colorA[2]},0.6)`;
+  ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0;
+}
 function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    ridges.forEach((pts) => {
-        const distToScan = Math.abs(pts[0].y - scanY) / H;
-        const brightness = Math.max(0.04, 0.25 - distToScan * 0.5);
-        const scanned = pts[0].y < scanY;
-        const alpha = scanned ? brightness + 0.08 : brightness;
-
-        ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
-        for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
-        ctx.strokeStyle = scanned ? `rgba(201,184,255,${alpha})` : `rgba(160,140,220,${alpha * 0.5})`;
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-
-        if (distToScan < 0.08) {
-            const glow = (0.08 - distToScan) / 0.08;
-            ctx.strokeStyle = `rgba(201,184,255,${glow * 0.7})`;
-            ctx.lineWidth = 2.5;
-            ctx.stroke();
-        }
-    });
-
-    const scanGrad = ctx.createLinearGradient(W * 0.05, 0, W * 0.95, 0);
-    scanGrad.addColorStop(0, 'transparent');
-    scanGrad.addColorStop(0.1, 'rgba(201,184,255,0.6)');
-    scanGrad.addColorStop(0.5, 'rgba(220,200,255,0.9)');
-    scanGrad.addColorStop(0.9, 'rgba(201,184,255,0.6)');
-    scanGrad.addColorStop(1, 'transparent');
-
-    ctx.beginPath();
-    ctx.moveTo(W * 0.05, scanY);
-    ctx.lineTo(W * 0.95, scanY);
-    ctx.strokeStyle = scanGrad;
-    ctx.lineWidth = 1.5;
-    ctx.shadowColor = 'rgba(201,184,255,0.8)';
-    ctx.shadowBlur = 12;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    const pct = Math.round(((scanY - H * 0.05) / (H * 0.9)) * 100);
-    ctx.fillStyle = 'rgba(201,184,255,0.5)';
-    ctx.font = '11px "Share Tech Mono", monospace';
-    ctx.fillText(`SCANNING ${pct}%`, W * 0.05, H * 0.97);
-
-    scanY += scanDir * 1.1;
-    if (scanY > H * 0.95) scanDir = -1;
-    if (scanY < H * 0.05) scanDir = 1;
-    requestAnimationFrame(draw);
+  ctx.clearRect(0, 0, W, H);
+  for (let i = LAYERS.length - 1; i >= 0; i--) drawLayer(LAYERS[i], t);
+  t += 0.3;
+  requestAnimationFrame(draw);
 }
 draw();
 </script>
 </body>
 </html>
-""", height=220, scrolling=False)
+""", height=320, scrolling=False)
 
     st.markdown("""
 <div class="page-header page-animate" style="margin-top:-8px;">
