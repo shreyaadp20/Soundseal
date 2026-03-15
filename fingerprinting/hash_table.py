@@ -184,11 +184,12 @@ class HashTable(object):
             for key in params:
                 self.params[key] = params[key]
         if file_object:
-            f = file_object
+            pickle.dump(self, file_object, pickle.HIGHEST_PROTOCOL)
         else:
-            f = gzip.open(name, 'wb')
-        pickle.dump(self, f, pickle.HIGHEST_PROTOCOL)
+            with gzip.open(name, 'wb') as f:
+                pickle.dump(self, f, pickle.HIGHEST_PROTOCOL)
         self.dirty = False
+         
         nhashes = sum(self.counts)
         # Report the proportion of dropped hashes (overfull table)
         dropped = nhashes - sum(np.minimum(self.depth, self.counts))
@@ -213,10 +214,10 @@ class HashTable(object):
     def load_pkl(self, name, file_object=None):
         """ Read hash table values from pickle file <name>. """
         if file_object:
-            f = file_object
+            temp = pickle.load(file_object, **pickle_options)
         else:
-            f = gzip.open(name, 'rb')
-        temp = pickle.load(f, **pickle_options)
+            with gzip.open(name, 'rb') as f:
+                temp = pickle.load(f, **pickle_options)
         if temp.ht_version < HT_OLD_COMPAT_VERSION:
             raise ValueError('Version of ' + name + ' is ' + str(temp.ht_version)
                              + ' which is not at least ' +
