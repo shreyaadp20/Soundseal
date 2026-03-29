@@ -6,8 +6,9 @@ import io
 import contextlib
 
 # Add dependencies explicitly so that integrate.py can find them
-WATERMARK_DIR = r"c:\design_Projects\Audio-Watermarking\src"
-FINGERPRINT_DIR = r"c:\design_Projects\fingerprinting"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+WATERMARK_DIR = os.path.join(BASE_DIR, "Audio-Watermarking", "src")
+FINGERPRINT_DIR = os.path.join(BASE_DIR, "fingerprinting")
 
 if WATERMARK_DIR not in sys.path:
     sys.path.append(WATERMARK_DIR)

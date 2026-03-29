@@ -10,8 +10,9 @@ import gc
 
 # ---------------- PATHS ---------------- #
 
-WATERMARK_DIR = r"c:\design_Projects\Audio-Watermarking\src"
-FINGERPRINT_DIR = r"c:\design_Projects\fingerprinting"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+WATERMARK_DIR = os.path.join(BASE_DIR, "Audio-Watermarking", "src")
+FINGERPRINT_DIR = os.path.join(BASE_DIR, "fingerprinting")
 
 sys.path.append(WATERMARK_DIR)
 sys.path.append(FINGERPRINT_DIR)
@@ -20,8 +21,8 @@ import perth
 import audfprint
 
 # ---------------- CONFIG ---------------- #
-DATASET_FOLDER = r"c:\design_Projects\fingerprinting\music"
-INPUT_FILE = r"c:\design_Projects\fingerprinting\music\blues.00000.wav"
+DATASET_FOLDER = os.path.join(FINGERPRINT_DIR, "music")
+INPUT_FILE = os.path.join(DATASET_FOLDER, "blues.00000.wav")
 OUTPUT_FILE = r"watermarked.wav"
 DB_PATH = "integrated_fpdb.pklz"
 
