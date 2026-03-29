@@ -5,4 +5,5 @@ librosa
 soundfile
 joblib
 docopt
+psutil
 ./Audio-Watermarking
