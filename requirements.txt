@@ -1,0 +1,8 @@
+streamlit
+numpy
+scipy
+librosa
+soundfile
+joblib
+docopt
+./Audio-Watermarking
